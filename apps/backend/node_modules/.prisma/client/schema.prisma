@@ -1,0 +1,93 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  passwordHash  String
+  name          String?
+  firstName     String?
+  lastName      String?
+  phone         String?
+  role          String         @default("USER") // USER, STYLIST, ADMIN
+  avatarUrl     String?
+  bio           String?
+  pronouns      String?
+  preferences   String?        // JSON stringified preferences
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  
+  stylist       Stylist?
+  bookings      Booking[]
+  notifications Notification[]
+
+  @@index([email])
+}
+
+model Stylist {
+  id           String    @id @default(uuid())
+  userId       String    @unique
+  bio          String?
+  specialities String?   // Comma-separated or JSON string
+  availability String?   // JSON representation of working hours
+  rating       Float     @default(5.0)
+  isAvailable  Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings     Booking[]
+}
+
+model Service {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  duration    Int       // in minutes
+  price       Float
+  category    String    // e.g. "Hair", "Skin", "Nails"
+  imageUrl    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  bookings    Booking[]
+}
+
+model Booking {
+  id            String   @id @default(uuid())
+  userId        String
+  serviceId     String
+  stylistId     String
+  dateTime      DateTime
+  status        String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  paymentStatus String   @default("PENDING") // PENDING, PAID
+  qrCode        String?  // Base64 or URL of generated QR code
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  service       Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  stylist       Stylist  @relation(fields: [stylistId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([dateTime])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
