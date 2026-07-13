@@ -1,0 +1,73 @@
+
+> @salon/backend@1.0.0 build
+> tsc
+
+[96msrc/modules/booking/booking.controller.ts[0m:[93m366[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string | string[]' is not assignable to type 'string | undefined'.
+  Type 'string[]' is not assignable to type 'string'.
+
+[7m366[0m       where: { id: bookingId },
+[7m   [0m [91m               ~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m6840[0m:[93m5[0m
+    [7m6840[0m     id?: string
+    [7m    [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'BookingWhereUniqueInput'
+
+[96msrc/modules/booking/booking.controller.ts[0m:[93m381[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string | string[]' is not assignable to type 'string | undefined'.
+  Type 'string[]' is not assignable to type 'string'.
+
+[7m381[0m       where: { id: bookingId },
+[7m   [0m [91m               ~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m6840[0m:[93m5[0m
+    [7m6840[0m     id?: string
+    [7m    [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'BookingWhereUniqueInput'
+
+[96msrc/modules/booking/booking.controller.ts[0m:[93m390[0m:[93m46[0m - [91merror[0m[90m TS2551: [0mProperty 'service' does not exist on type '{ id: string; userId: string; serviceId: string; stylistId: string; dateTime: Date; status: string; paymentStatus: string; qrCode: string | null; createdAt: Date; updatedAt: Date; }'. Did you mean 'serviceId'?
+
+[7m390[0m         message: `Your booking for ${booking.service.name} has been successfully cancelled.`,
+[7m   [0m [91m                                             ~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m4681[0m:[93m7[0m
+    [7m4681[0m       serviceId: string
+    [7m    [0m [96m      ~~~~~~~~~[0m
+    'serviceId' is declared here.
+
+[96msrc/modules/service/service.controller.ts[0m:[93m19[0m:[93m64[0m - [91merror[0m[90m TS2322: [0mType 'string | string[]' is not assignable to type 'string | undefined'.
+  Type 'string[]' is not assignable to type 'string'.
+
+[7m19[0m     const service = await prisma.service.findUnique({ where: { id } });
+[7m  [0m [91m                                                               ~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m6757[0m:[93m5[0m
+    [7m6757[0m     id?: string
+    [7m    [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'ServiceWhereUniqueInput'
+
+[96msrc/modules/stylist/stylist.controller.ts[0m:[93m20[0m:[93m16[0m - [91merror[0m[90m TS2322: [0mType 'string | string[]' is not assignable to type 'string | undefined'.
+  Type 'string[]' is not assignable to type 'string'.
+
+[7m20[0m       where: { id },
+[7m  [0m [91m               ~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m6679[0m:[93m5[0m
+    [7m6679[0m     id?: string
+    [7m    [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type 'StylistWhereUniqueInput'
+
+
+Found 5 errors in 3 files.
+
+Errors  Files
+     3  src/modules/booking/booking.controller.ts[90m:366[0m
+     1  src/modules/service/service.controller.ts[90m:19[0m
+     1  src/modules/stylist/stylist.controller.ts[90m:20[0m
+⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m2[39m
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /Users/shivamkumar/clonel/salon booking system/apps/backend
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @salon/backend@1.0.0
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /Users/shivamkumar/clonel/salon booking system/apps/backend
+⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c tsc
+⠙[1G[0K

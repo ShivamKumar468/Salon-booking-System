@@ -10,10 +10,12 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const auth_controller_1 = __importDefault(require("./modules/auth/auth.controller"));
 const user_controller_1 = __importDefault(require("./modules/user/user.controller"));
 const booking_controller_1 = __importDefault(require("./modules/booking/booking.controller"));
+const service_controller_1 = __importDefault(require("./modules/service/service.controller"));
+const stylist_controller_1 = __importDefault(require("./modules/stylist/stylist.controller"));
 const rateLimit_1 = require("./middleware/rateLimit");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 // Security Middlewares
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)({
@@ -33,6 +35,8 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', auth_controller_1.default);
 app.use('/api/user', user_controller_1.default);
 app.use('/api/booking', booking_controller_1.default);
+app.use('/api/service', service_controller_1.default);
+app.use('/api/stylist', stylist_controller_1.default);
 // Start the server
 app.listen(PORT, () => {
     console.log(`⚡️[server]: Salon Booking Backend is running on port ${PORT}`);

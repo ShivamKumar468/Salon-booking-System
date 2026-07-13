@@ -1,0 +1,17 @@
+
+> @salon/frontend@0.1.0 build
+> next build
+
+[1m[38;2;173;127;168m▲ Next.js 16.2.10[39m[22m (Turbopack)
+- Environments: .env.local, .env
+
+[33m[1m⚠[22m[39m The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[37m[1m [22m[39m Creating an optimized production build ...
+⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m130[39m
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /Users/shivamkumar/clonel/salon booking system/apps/frontend
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @salon/frontend@0.1.0
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /Users/shivamkumar/clonel/salon booking system/apps/frontend
+⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c next build
+⠙[1G[0K

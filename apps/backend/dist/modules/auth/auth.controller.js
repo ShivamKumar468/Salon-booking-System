@@ -16,11 +16,14 @@ const registerSchema = zod_1.z.object({
     password: zod_1.z
         .string()
         .min(8, 'Password must be at least 8 characters long')
+        .max(15, 'Password must be at most 15 characters long')
         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
         .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
         .regex(/[0-9]/, 'Password must contain at least one digit')
         .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
-    name: zod_1.z.string().min(2, 'Name must be at least 2 characters long'),
+    firstName: zod_1.z.string().min(2, 'First name must be at least 2 characters long'),
+    lastName: zod_1.z.string().min(2, 'Last name must be at least 2 characters long'),
+    phone: zod_1.z.string().optional(),
     avatarUrl: zod_1.z.string().optional(),
 });
 const loginSchema = zod_1.z.object({
@@ -36,7 +39,8 @@ router.post('/register', async (req, res) => {
             res.status(400).json({ errors });
             return;
         }
-        const { email, password, name, avatarUrl } = parseResult.data;
+        const { email, password, firstName, lastName, phone, avatarUrl } = parseResult.data;
+        const name = `${firstName} ${lastName}`;
         // Check if user already exists
         const existingUser = await prisma_1.default.user.findUnique({ where: { email } });
         if (existingUser) {
@@ -52,6 +56,9 @@ router.post('/register', async (req, res) => {
                 email,
                 passwordHash,
                 name,
+                firstName,
+                lastName,
+                phone: phone || null,
                 avatarUrl: avatarUrl || null,
                 role: 'USER',
             },
