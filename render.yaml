@@ -1,0 +1,22 @@
+# Render Blueprint Specification
+# See https://render.com/docs/blueprint-spec for details
+services:
+  - type: web
+    name: salon-booking-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npx turbo run build --filter=@salon/backend
+    startCommand: npm run start --filter=@salon/backend
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false

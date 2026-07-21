@@ -15,7 +15,8 @@ router.get('/', async (req: Request, res: Response) => {
 // Get service by ID
 router.get('/:id', async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const rawId = req.params.id;
+    const id = Array.isArray(rawId) ? rawId[0] : rawId;
     const service = await prisma.service.findUnique({ where: { id } });
     if (!service) {
       return res.status(404).json({ error: 'Service not found' });

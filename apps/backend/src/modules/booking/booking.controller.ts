@@ -355,7 +355,8 @@ router.get('/my-bookings', authenticateToken, async (req: AuthenticatedRequest, 
 router.post('/cancel/:id', authenticateToken, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const userId = req.user?.id;
-    const bookingId = req.params.id;
+    const rawId = req.params.id;
+    const bookingId = Array.isArray(rawId) ? rawId[0] : rawId;
 
     if (!userId) {
       res.status(401).json({ error: 'Unauthorized' });

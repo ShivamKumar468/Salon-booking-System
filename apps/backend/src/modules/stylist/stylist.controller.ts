@@ -15,7 +15,8 @@ router.get('/', async (req: Request, res: Response) => {
 // Get stylist by ID
 router.get('/:id', async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const rawId = req.params.id;
+    const id = Array.isArray(rawId) ? rawId[0] : rawId;
     const stylist = await prisma.stylist.findUnique({ 
       where: { id }, 
       include: { user: true } 

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-interface Button3DProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Button3DProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd'> {
   variant?: 'primary' | 'secondary' | 'accent' | 'danger';
   children: React.ReactNode;
   fullWidth?: boolean;

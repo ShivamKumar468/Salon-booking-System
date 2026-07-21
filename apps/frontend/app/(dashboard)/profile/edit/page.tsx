@@ -157,7 +157,7 @@ export default function ProfileEditPage() {
       );
 
       if (!prefsRes.ok) {
-        addToast('Preferences update failed, but profile updated.', 'warning');
+        addToast('Preferences update failed, but profile updated.', 'info');
       } else {
         addToast('Profile and preferences updated!', 'success');
       }

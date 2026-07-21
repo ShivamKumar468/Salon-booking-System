@@ -7,6 +7,8 @@ import PageTransition from '../../../components/animations/PageTransition';
 import Avvvatars from 'avvvatars-react';
 import prisma from '../../../lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 export default async function StylistsPage() {
   const stylists = await prisma.stylist.findMany({ include: { user: true } });
 
@@ -41,7 +43,7 @@ export default async function StylistsPage() {
               const specialities = stylist.specialities ? stylist.specialities.split(',') : [];
               return (
                 <Card3D key={stylist.id} glowColor="rgba(255, 51, 102, 0.15)" className="border border-white/5 bg-zinc-900/40 p-6 flex flex-col items-center text-center">
-                  <Avvvatars value={stylist.user.name} style="shape" size={100} />
+                  <Avvvatars value={stylist.user.name || 'User'} style="shape" size={100} />
                   <h3 className="text-xl font-bold text-zinc-200 mt-4 mb-2">{stylist.user.name}</h3>
                   <div className="flex items-center gap-1 mb-2">
                     <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />

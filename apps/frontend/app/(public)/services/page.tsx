@@ -6,6 +6,8 @@ import { Scissors, Palette, Sparkles, Bath } from 'lucide-react';
 import PageTransition from '../../../components/animations/PageTransition';
 import prisma from '../../../lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 const iconMap: Record<string, React.ElementType> = {
   Haircut: Scissors,
   Coloring: Palette,

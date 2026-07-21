@@ -1,14 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Card3D from '@/components/ui/Card3D';
 import Button3D from '@/components/ui/Button3D';
 import PageTransition from '@/components/animations/PageTransition';
-import { CheckCircle, Calendar, ArrowRight, ShieldCheck } from 'lucide-react';
+import { CheckCircle, Calendar, ArrowRight } from 'lucide-react';
 
-export default function BookingSuccessPage() {
+function BookingSuccessContent() {
   const searchParams = useSearchParams();
   const bookingId = searchParams.get('id') || 'UNKNOWN';
   const qrCodeData = searchParams.get('qrCode') || 'SALON-QR-CODE';
@@ -103,5 +103,17 @@ export default function BookingSuccessPage() {
         </div>
       </div>
     </PageTransition>
+  );
+}
+
+export default function BookingSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="max-w-md mx-auto py-12 text-center">
+        <div className="animate-pulse text-zinc-400">Loading...</div>
+      </div>
+    }>
+      <BookingSuccessContent />
+    </Suspense>
   );
 }
