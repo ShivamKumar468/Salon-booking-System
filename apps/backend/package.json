@@ -5,11 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "prisma generate --schema=../../packages/shared/prisma/schema.prisma && tsc",
+    "build": "npm run build --workspace=@salon/shared && prisma generate --schema=../../packages/shared/prisma/schema.prisma && tsc",
     "start": "node dist/index.js",
     "prisma:generate": "prisma generate --schema=../../packages/shared/prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema=../../packages/shared/prisma/schema.prisma",
-    "postinstall": "prisma generate --schema=../../packages/shared/prisma/schema.prisma"
+    "postinstall": "npm run build --workspace=@salon/shared && prisma generate --schema=../../packages/shared/prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",

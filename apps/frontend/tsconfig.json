@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@salon/shared": ["../../packages/shared/src/index.ts"],
+      "@salon/shared/*": ["../../packages/shared/src/*"]
     }
   },
   "include": [

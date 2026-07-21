@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate --schema=../../packages/shared/prisma/schema.prisma && next build",
+    "build": "npm run build --workspace=@salon/shared && prisma generate --schema=../../packages/shared/prisma/schema.prisma && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate --schema=../../packages/shared/prisma/schema.prisma"
+    "postinstall": "npm run build --workspace=@salon/shared && prisma generate --schema=../../packages/shared/prisma/schema.prisma"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
